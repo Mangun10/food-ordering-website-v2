@@ -1,0 +1,37 @@
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Remove commented out code -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ejs/2.7.4/ejs.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="Cart2.js" defer></script>
+  </head>
+  
+  <body>
+    <div class="card">
+      <div class="row">
+        <div class="col-md-8 cart">
+          <div class="title">
+            <div class="row">
+              <div class="col">
+                <h4><b>Shopping Cart</b></h4>
+              </div>
+              <div class="col align-self-center text-right text-muted">
+                <%= userOrders.length %> items
+              </div>
+            </div>
+          </div>
+          <div class="row border-top border-bottom">
+            <% userOrders.forEach((order, index) => { %>
+              <div class="row main align-items-center">
+                <div class="col-2"><!-- Add content here --></div>
+                <!-- Add more columns or content here -->
+              </div>
+            <% }); %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>

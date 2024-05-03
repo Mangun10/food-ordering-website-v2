@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login/Register</title>
+<link rel="stylesheet" href="newlogin.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body ng-app="">
+    <div class="container">
+        <div class="loginbg">
+            <div class="box signin">
+                <h2>Already Have an Account ?</h2>
+                <button class="signinbtn">Sign in</button>
+            </div>
+            <div class="box signup">
+                <h2>Dont Have an Account ?</h2>
+                <button class="signupbtn">Sign up</button>
+            </div>
+        </div>
+        <div class="formbx">
+            <div class="form signinform">
+                <form name="myform" method="get" action="http://localhost:5000/users/signin">
+                    <h2>Foodies</h2>
+                    <h3>Sign In</h3>
+                    <input type="text" name="username" placeholder="Username" ng-model="username" required>
+                    <!-- {{myform.username.$dirty}} {{myform.username.$invalid}}{{myform.username.$valid}} -->
+                    <span style="color:red" ng-show="myform.username.$invalid&&myform.username.$dirty" >
+                        <span ng-show="myform.username.$error.required">Name is required</span>
+                    </span>
+                    <input type="password" name="password" placeholder="Password" ng-model="password" ng-minlength="6" ng-maxlength="8" required>
+                <span style="color:red" ng-show="myform.password.$dirty && myform.password.$invalid">
+                    <span ng-show="myform.password.$error.required">Password Required</span>
+                    <span ng-show="myform.password.$error.minlength || myform.password.$error.maxlength">Password between 6-8 characters</span>
+                </span>
+                    <button value="submit" ng-disabled="myform.pass.$error.minlength || myform.pass.$error.maxlength">Login</button>
+                    <!-- <a href="#" class="forgot">Forgot password?</a> -->
+                    </form>
+            </div>
+            <div class="form signupform">
+                <form name="newform" method="get" action="http://localhost:5000/users/new">
+                    <h3>Sign up</h3>
+                    <input type="text"  name="name" placeholder="Enter Your Name" ng-model="name" required>
+                    <!-- {{newform.name.$invalid}} {{newform.name.$dirty}}{{name}} -->
+                    <span style="color:red" ng-show="newform.name.$invalid&&newform.name.$dirty">
+                        <span ng-show="newform.name.$error.required">Name is Required</span>
+                    </span>
+
+                    <input type="email" name="email" ng-model="email" placeholder="Enter Your Email" required>
+                        <span  style="color:red" ng-show="newform.email.$dirty && newform.email.$invalid">
+                            <span ng-show="newform.email.$dirty && newform.email.$touched">Email Required</span>
+                            <span ng-show="newform.email.$error.email">Enter Valid Mail</span>
+                        </span>
+
+                    <input type="date"  name="dob" ng-model="dob" placeholder=" Enter your Date of birth" required>
+                        <span style="color:red" ng-show="newform.dob.$error.required&&newform.dob.$dirty">Date of birth is required</span>
+            
+                    <input type="password" name="password" ng-model="password" placeholder="Password (6-8 characters)" ng-minlength="6" ng-maxlength="8" required>
+                    <span style="color:red" ng-show="newform.password.$dirty && newform.password.$invalid">
+                        <span ng-show="newform.password.$error.required">Password Required</span>
+                        <span ng-show="newform.password.$error.minlength || newform.password.$error.maxlength">Password between 6-8 characters</span>
+                    </span>
+                    <input type="password" name="verify" ng-model="verify" ng-pattern="password" placeholder="Confirm password" required>
+                    <span style="color:red" ng-show="newform.verify.$dirty && newform.verify.$invalid">
+                        <span ng-show="newform.verify.$error.required">Password Required</span>
+                        <span ng-show="newform.verify.$error.pattern">Password not matching</span>
+                    </span>
+
+                    <button value="submit" ng-disabled="newform.pass.$error.minlength || newform.pass.$error.maxlength||newform.verify.$error.pattern">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+<script>
+    const signinbtn = document.querySelector('.signinbtn');
+    const signupbtn = document.querySelector('.signupbtn');
+    const formbx = document.querySelector('.formbx');
+    const body = document.querySelector('body')
+    signupbtn.onclick = function(){
+        formbx.classList.add('active')
+        body.classList.add('active')
+    }
+    signinbtn.onclick = function(){
+        formbx.classList.remove('active')
+        body.classList.remove('active')
+    }
+</script>
+</body>
+</html>
